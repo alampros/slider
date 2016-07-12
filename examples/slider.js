@@ -98,6 +98,45 @@ webpackJsonp([3],{
 	  }
 	});
 	
+	var CustomizedTrack = function CustomizedTrack(_ref) {
+	  var className = _ref.className;
+	  var included = _ref.included;
+	  var vertical = _ref.vertical;
+	  var offset = _ref.offset;
+	  var length = _ref.length;
+	
+	  var style = {
+	    visibility: included ? 'visible' : 'hidden',
+	    backgroundColor: 'tomato'
+	  };
+	  if (vertical) {
+	    style.bottom = offset + '%';
+	    style.height = length + '%';
+	  } else {
+	    style.left = offset + '%';
+	    style.width = length + '%';
+	  }
+	  return React.createElement('div', { className: className + ' customClass', style: style });
+	};
+	
+	var CustomizedSteps = function CustomizedSteps(_ref2) {
+	  var prefixCls = _ref2.prefixCls;
+	  var vertical = _ref2.vertical;
+	  var marks = _ref2.marks;
+	  var dots = _ref2.dots;
+	  var step = _ref2.step;
+	  var included = _ref2.included;
+	  var lowerBound = _ref2.lowerBound;
+	  var upperBound = _ref2.upperBound;
+	  var max = _ref2.max;
+	  var min = _ref2.min;
+	
+	  var customStyle = {
+	    background: 'rgba(255,0,0,' + upperBound + ')'
+	  };
+	  return React.createElement('div', { className: prefixCls + '-step', style: customStyle });
+	};
+	
 	ReactDOM.render(React.createElement(
 	  'div',
 	  null,
@@ -180,6 +219,26 @@ webpackJsonp([3],{
 	      'Slider with dynamic `min` `max`'
 	    ),
 	    React.createElement(DynamicBounds, null)
+	  ),
+	  React.createElement(
+	    'div',
+	    { style: style },
+	    React.createElement(
+	      'p',
+	      null,
+	      'Customized Track component'
+	    ),
+	    React.createElement(Slider, { trackComponent: CustomizedTrack, defaultValue: 25 })
+	  ),
+	  React.createElement(
+	    'div',
+	    { style: style },
+	    React.createElement(
+	      'p',
+	      null,
+	      'Customized Steps component'
+	    ),
+	    React.createElement(Slider, { stepsComponent: CustomizedSteps, defaultValue: 0.25, min: 0, max: 1, step: 0.01 })
 	  )
 	), document.getElementById('__react-content'));
 

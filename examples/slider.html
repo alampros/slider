@@ -337,8 +337,33 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
   },
 });
 
+const CustomizedTrack = ({className, included, vertical, offset, length}) =&gt; {
+  const style = {
+    visibility: included ? 'visible' : 'hidden',
+    backgroundColor: 'tomato',
+  };
+  if (vertical) {
+    style.bottom = offset + '%';
+    style.height = length + '%';
+  } else {
+    style.left = offset + '%';
+    style.width = length + '%';
+  }
+  return <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{className</span> + ' <span class="hljs-attribute">customClass</span>'} <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span> /&gt;</span>;</span>
+};
+
+<span class="hljs-keyword">const</span> CustomizedSteps = ({prefixCls, vertical, marks, dots, step, included,
+                lowerBound, upperBound, max, min}) =&gt; {
+  <span class="hljs-keyword">const</span> customStyle = {
+    background: `rgba(<span class="hljs-number">255</span>,<span class="hljs-number">0</span>,<span class="hljs-number">0</span>,${upperBound})`,
+  }
+  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">className</span>=<span class="hljs-value">{prefixCls</span> + '<span class="hljs-attribute">-step</span>'} <span class="hljs-attribute">style</span>=<span class="hljs-value">{customStyle}</span> /&gt;</span>;</span>
+};
+
+
+
 ReactDOM.render(
-  <span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Basic Slider<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">Slider</span> <span class="hljs-attribute">tipTransitionName</span>=<span class="hljs-value">"rc-slider-tooltip-zoom-down"</span> <span class="hljs-attribute">onChange</span>=<span class="hljs-value">{log}</span> /&gt;</span>
@@ -370,6 +395,14 @@ ReactDOM.render(
     <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Slider with dynamic `min` `max`<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-title">DynamicBounds</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Customized Track component<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Slider</span> <span class="hljs-attribute">trackComponent</span>=<span class="hljs-value">{CustomizedTrack}</span> <span class="hljs-attribute">defaultValue</span>=<span class="hljs-value">{25}</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{style}</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">p</span>&gt;</span>Customized Steps component<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">Slider</span> <span class="hljs-attribute">stepsComponent</span>=<span class="hljs-value">{CustomizedSteps}</span> <span class="hljs-attribute">defaultValue</span>=<span class="hljs-value">{0.25}</span> <span class="hljs-attribute">min</span>=<span class="hljs-value">{0}</span> <span class="hljs-attribute">max</span>=<span class="hljs-value">{1}</span> <span class="hljs-attribute">step</span>=<span class="hljs-value">{0.01}</span> /&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
   , document.getElementById('__react-content'));

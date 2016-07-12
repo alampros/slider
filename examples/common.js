@@ -21613,6 +21613,10 @@
 	
 	      var sliderClassName = (0, _classnames2['default'])((_classNames = {}, _defineProperty(_classNames, prefixCls, true), _defineProperty(_classNames, prefixCls + '-disabled', disabled), _defineProperty(_classNames, className, !!className), _defineProperty(_classNames, prefixCls + '-vertical', this.props.vertical), _classNames));
 	      var isIncluded = included || range;
+	
+	      var TrackComponent = this.props.trackComponent;
+	      var StepsComponent = this.props.stepsComponent;
+	
 	      return _react2['default'].createElement(
 	        'div',
 	        { ref: 'slider', className: sliderClassName,
@@ -21620,9 +21624,9 @@
 	          onMouseDown: disabled ? noop : this.onMouseDown.bind(this) },
 	        upper,
 	        lower,
-	        _react2['default'].createElement(_Track2['default'], { className: prefixCls + '-track', vertical: vertical, included: isIncluded,
+	        _react2['default'].createElement(TrackComponent, { className: prefixCls + '-track', vertical: vertical, included: isIncluded,
 	          offset: lowerOffset, length: upperOffset - lowerOffset }),
-	        _react2['default'].createElement(_Steps2['default'], { prefixCls: prefixCls, vertical: vertical, marks: marks, dots: dots, step: step,
+	        _react2['default'].createElement(StepsComponent, { prefixCls: prefixCls, vertical: vertical, marks: marks, dots: dots, step: step,
 	          included: isIncluded, lowerBound: lowerBound,
 	          upperBound: upperBound, max: max, min: min }),
 	        _react2['default'].createElement(_Marks2['default'], { className: prefixCls + '-mark', vertical: vertical, marks: marks,
@@ -21652,6 +21656,8 @@
 	  onChange: _react2['default'].PropTypes.func,
 	  onAfterChange: _react2['default'].PropTypes.func,
 	  handle: _react2['default'].PropTypes.element,
+	  trackComponent: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.node, _react2['default'].PropTypes.func]),
+	  stepsComponent: _react2['default'].PropTypes.oneOfType([_react2['default'].PropTypes.node, _react2['default'].PropTypes.func]),
 	  tipTransitionName: _react2['default'].PropTypes.string,
 	  tipFormatter: _react2['default'].PropTypes.func,
 	  dots: _react2['default'].PropTypes.bool,
@@ -21669,6 +21675,8 @@
 	  step: 1,
 	  marks: {},
 	  handle: _react2['default'].createElement(_Handle2['default'], null),
+	  trackComponent: _Track2['default'],
+	  stepsComponent: _Steps2['default'],
 	  onBeforeChange: noop,
 	  onChange: noop,
 	  onAfterChange: noop,
